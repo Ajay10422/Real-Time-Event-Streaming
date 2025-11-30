@@ -16,16 +16,18 @@ graph TB
     F -->|Serve Metrics R²/MAE| G[Streamlit Dashboard]
 
     %% Styling
-    style A fill:#f9f,stroke:#333,stroke-width:2px,font-size:16px
+    style A fill:#d9d9d9,stroke:#333,stroke-width:2px,color:black,font-size:16px
     style B fill:#ff9,stroke:#f66,stroke-width:4px,color:red,font-size:16px
-    style C fill:#e1e1e1,stroke:#333,stroke-width:2px,font-size:16px
-    style D fill:#c0c0c0,stroke:#333,stroke-width:2px,font-size:16px
-    style E fill:#ffcc99,stroke:#333,stroke-width:2px,font-size:16px
-    style F fill:#ccffcc,stroke:#333,stroke-width:2px,font-size:16px
-    style G fill:#9ff,stroke:#333,stroke-width:2px,font-size:16px
-    linkStyle default stroke-width:2px,fill:none,stroke:black,font-size:14px
-
-## Features
+    style C fill:#4d4d4d,stroke:#fff,stroke-width:2px,color:white,font-size:16px
+    style D fill:#666666,stroke:#fff,stroke-width:2px,color:white,font-size:16px
+    style E fill:#ffcc99,stroke:#333,stroke-width:2px,color:black,font-size:16px
+    style F fill:#ccffcc,stroke:#333,stroke-width:2px,color:black,font-size:16px
+    style G fill:#9ff,stroke:#333,stroke-width:2px,color:black,font-size:16px
+    
+    %% Force arrows to be White for Dark Mode
+    linkStyle default stroke-width:2px,fill:none,stroke:white,font-size:14px
+```
+##Features
 
 - **Real-Time Data Ingestion**: A Python script (`producer.py`) reads vehicle data and streams it into Kafka.
 - **Kafka Message Bus**: Redpanda is used as a lightweight, Docker-based Kafka-compatible message broker.
