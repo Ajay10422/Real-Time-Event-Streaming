@@ -1,3 +1,5 @@
+End-to-end IIoT data pipeline using Apache Kafka (Redpanda), Docker, Snowflake, and Streamlit.
+
 # Real-Time ML Pipeline for Fuel Efficiency Forecasting
 
 This project demonstrates a complete, end-to-end streaming machine learning pipeline for predicting vehicle fuel efficiency. It uses Kafka (via Redpanda) to simulate a real-time data stream, processes the data through a Bronze/Silver architecture, and continuously retrains a model. A Streamlit dashboard provides a live view of the model's performance.
