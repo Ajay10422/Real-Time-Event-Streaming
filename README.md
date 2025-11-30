@@ -24,6 +24,7 @@ graph TB
     style F fill:#ccffcc,stroke:#333,stroke-width:2px,font-size:16px
     style G fill:#9ff,stroke:#333,stroke-width:2px,font-size:16px
     linkStyle default stroke-width:2px,fill:none,stroke:black,font-size:14px
+
 ## Features
 
 - **Real-Time Data Ingestion**: A Python script (`producer.py`) reads vehicle data and streams it into Kafka.
