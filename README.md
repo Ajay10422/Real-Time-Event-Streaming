@@ -2,6 +2,9 @@
 
 This project demonstrates a complete, end-to-end streaming machine learning pipeline for predicting vehicle fuel efficiency. It uses Kafka (via Redpanda) to simulate a real-time data stream, processes the data through a Bronze/Silver architecture, and continuously retrains a model. A Streamlit dashboard provides a live view of the model's performance.
 
+### 🟢 Live Demo
+**[Launch Dashboard on Render](https://dashboard-5p9c.onrender.com/)**
+
 ```mermaid
 graph TB
     %% Definitions
@@ -21,8 +24,6 @@ graph TB
     style F fill:#ccffcc,stroke:#333,stroke-width:2px,font-size:16px
     style G fill:#9ff,stroke:#333,stroke-width:2px,font-size:16px
     linkStyle default stroke-width:2px,fill:none,stroke:black,font-size:14px
-
-Live demo - https://dashboard-5p9c.onrender.com/
 ## Features
 
 - **Real-Time Data Ingestion**: A Python script (`producer.py`) reads vehicle data and streams it into Kafka.
