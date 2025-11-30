@@ -13,6 +13,22 @@ Live demo - https://dashboard-5p9c.onrender.com/
 - **Continuous Model Training**: A trainer script (`consumer_trainer.py`) monitors the Silver layer and retrains a Scikit-learn model whenever new data arrives.
 - **Live Monitoring Dashboard**: A Streamlit application (`training_monitor.py`) visualizes the model's performance (R² and MAE) in real-time and allows for pipeline control.
 
+  graph LR
+    %% Definitions
+    A[Vehicle Data Simulator] -->|JSON Stream| B(Redpanda Message Bus)
+    B -->|Consumer Service| C[(Bronze Layer\nRaw Parquet)]
+    C -->|Cleaning Process| D[(Silver Layer\nProcessed Data)]
+    D -->|Data Drift Trigger| E{Continuous Trainer}
+    E -->|Retrain Model| F[Scikit-learn Model Artifact]
+    F -->|Serve Metrics R²/MAE| G[Streamlit Dashboard]
+
+    %% Styling
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#ff9,stroke:#f66,stroke-width:4px,color:red
+    style C fill:#e1e1e1,stroke:#333,stroke-width:2px
+    style D fill:#c0c0c0,stroke:#333,stroke-width:2px
+    style G fill:#9ff,stroke:#333,stroke-width:2px
+
 ## Project Structure
 
 ```
