@@ -12,19 +12,23 @@ Reads rows from Cars_Cleaned.xlsx and streams them into Kafka as JSON.
 Producer that streams 100 rows every 5 seconds from Cars_Cleaned.xlsx into Kafka.
 """
 
-import os, json, time
+import os, json, time, sys
 from datetime import datetime, timezone
+from pathlib import Path
 import pandas as pd
-from kafka import KafkaProducer
 from dotenv import load_dotenv
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from core.kafka_factory import get_kafka_producer
 
 load_dotenv()
 
 TOPIC = os.getenv("KAFKA_TOPIC", "energuide-events")
 BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP", "localhost:9092")
 
-def build_producer(bootstrap: str) -> KafkaProducer:
-    return KafkaProducer(
+def build_producer(bootstrap: str):
+    return get_kafka_producer(
         bootstrap_servers=bootstrap,
         key_serializer=lambda k: k.encode() if isinstance(k, str) else k,
         value_serializer=lambda v: json.dumps(v).encode(),

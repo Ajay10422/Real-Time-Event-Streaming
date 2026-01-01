@@ -16,8 +16,11 @@ import os, json, signal, sys
 from datetime import datetime, timezone
 from pathlib import Path
 import pandas as pd
-from kafka import KafkaConsumer
 from dotenv import load_dotenv
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from core.kafka_factory import get_kafka_consumer
 
 # Minimal schema guard (keeps bronze consistent)
 REQUIRED = ["ts","make","model","year","transmission_code","fuel_type","co2_gpkm","l_100km","province"]
@@ -36,8 +39,8 @@ def main():
     BRONZE_ROOT = Path("data/bronze")
     BRONZE_ROOT.mkdir(parents=True, exist_ok=True)
 
-    # Kafka consumer (its own group so it doesn’t share offsets with your print consumer)
-    consumer = KafkaConsumer(
+    # Kafka consumer (its own group so it doesn't share offsets with your print consumer)
+    consumer = get_kafka_consumer(
         topic,
         bootstrap_servers=bootstrap,
         auto_offset_reset="earliest",

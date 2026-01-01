@@ -12,11 +12,15 @@ Consumes messages from Kafka and simply prints them to the console.
 Consumer that listens to Kafka and writes events into Parquet files (Bronze layer).
 """
 
-import os, json
+import os, json, sys
+from pathlib import Path
 import pandas as pd
-from kafka import KafkaConsumer
 from dotenv import load_dotenv
 from datetime import datetime
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from core.kafka_factory import get_kafka_consumer
 
 load_dotenv()
 
@@ -26,7 +30,7 @@ BRONZE_DIR = os.path.join("data", "bronze")
 os.makedirs(BRONZE_DIR, exist_ok=True)
 
 def main():
-    consumer = KafkaConsumer(
+    consumer = get_kafka_consumer(
         TOPIC,
         bootstrap_servers=BOOTSTRAP,
         auto_offset_reset="earliest",
